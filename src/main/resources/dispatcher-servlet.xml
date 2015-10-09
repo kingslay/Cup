@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:aop="http://www.springframework.org/schema/aop" 
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:task="http://www.springframework.org/schema/task"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
     http://www.springframework.org/schema/tx    
     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd   
@@ -26,21 +26,23 @@
     <!--默认的mvc注解映射的支持 -->
     <mvc:annotation-driven/>
     <!-- 支持异步方法执行 -->
-    <task:annotation-driven /> 
+    <task:annotation-driven />
 
     <!-- 视图解析器和json解析器 -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="mediaTypes">
-            <map>
-                <entry key="html" value="text/html"/>
-                <entry key="json" value="application/json"/>
-            </map>
-        </property>
+        <property name="order" value="1" />
+        <!--<property name="mediaTypes">-->
+            <!--<map>-->
+                <!--<entry key="json" value="application/json" />-->
+                <!--<entry key="xml" value="application/xml" />-->
+                <!--<entry key="request" value="text/html" />-->
+            <!--</map>-->
+        <!--</property>-->
         <property name="viewResolvers">
             <list>
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                	<!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
-                    <property name="prefix" value="/pages/" /> 
+                    <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+                    <property name="prefix" value="/pages/" />
                     <property name="suffix" value=".jsp"/>
                 </bean>
             </list>
@@ -51,17 +53,17 @@
             </list>
         </property>
     </bean>
-    
+
     <!-- 文件上传解析器 -->
     <bean id="multipartResolver"
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- one of the properties available; the maximum file size in bytes -->
         <property name="maxUploadSize" value="-1"/>
     </bean>
 
     <!-- 总错误处理 -->
     <bean id="exceptionResolver"
-        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView">
             <value>/error</value>
         </property>
