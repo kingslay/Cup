@@ -1,8 +1,10 @@
 package com.lhl.usersystem.action;
 
+import java.io.IOException;
 import java.util.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -96,5 +98,21 @@ public class UserAction {
         }
         map.put("success", "true");
 		return map;
+    }
+    @RequestMapping("/testError")
+    @ResponseBody
+    public Object testEroor(@RequestParam Map<String, String> valueMap,HttpServletResponse response) throws IOException {
+        List<String> list = new ArrayList<String>();
+        list.add("wang");
+        list.add("wang");
+        list.add("wang");
+        list.add("wang");
+        list.add("wang");
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("items", list);
+        map.put("status", 1);
+        map.put("result",valueMap);
+        response.setStatus(400);
+        return map;
     }
 }
