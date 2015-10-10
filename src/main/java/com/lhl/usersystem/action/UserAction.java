@@ -1,9 +1,6 @@
 package com.lhl.usersystem.action;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,22 +71,24 @@ public class UserAction {
 	}
 
 	@RequestMapping(value="/jsonfeed",method= RequestMethod.GET)
-	public String getJSON(Model model) {
+    @ResponseBody
+	public Object getJSON(@RequestParam Map<String, String> valueMap) {
 		List<String> list = new ArrayList<String>();
 		list.add("wang");
 		list.add("wang");
 		list.add("wang");
 		list.add("wang");
 		list.add("wang");
-		model.addAttribute("items", list);
-		model.addAttribute("status", 0);
-		return "jsonTemplate";
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("items", list);
+		map.put("status", 1);
+        map.put("result",valueMap);
+        return map;
 	}
     @RequestMapping(value="/add",method= RequestMethod.POST)
 	@ResponseBody
     public Object addUser(@RequestBody Map<String, String> valueMap,
                           BindingResult bindingResult) {
-
         Map<String, Object> map = new HashMap<String, Object>();
         if (bindingResult.hasErrors()) {
             map.put("errorCode", "40001");

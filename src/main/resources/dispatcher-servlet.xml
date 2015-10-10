@@ -28,10 +28,6 @@
     <!-- 支持异步方法执行 -->
     <task:annotation-driven />
 
-    <!-- 视图解析器和json解析器 -->
-    <bean name="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
-    <bean name="jsonTemplate" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
-
     <!-- 文件上传解析器 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
