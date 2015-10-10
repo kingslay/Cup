@@ -1,14 +1,19 @@
 package com.lhl.usersystem.action;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lhl.usersystem.service.UserService;
@@ -16,7 +21,7 @@ import com.lhl.usersystem.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserAction {
-	
+
 	@Resource
 	private UserService userService;
 
@@ -34,11 +39,11 @@ public class UserAction {
 
 	@RequestMapping("/save")
 	public String save(@RequestParam("id") String id,
-			@RequestParam("token") String token,
-			@RequestParam("name") String name,
-			@RequestParam("sex") String sex,
-			@RequestParam("birthday") String birthday,
-			HttpServletRequest req) {
+					   @RequestParam("token") String token,
+					   @RequestParam("name") String name,
+					   @RequestParam("sex") String sex,
+					   @RequestParam("birthday") String birthday,
+					   HttpServletRequest req) {
 		String sesstoken = DigestUtils.md5DigestAsHex(req.getSession().getId().getBytes());
 		if (!StringUtils.equals(sesstoken, token)) {
 			return "redirect:/pages/welcome.jsp?save=invalidtoken";
@@ -46,19 +51,20 @@ public class UserAction {
 		userService.save(id, name, sex, birthday);
 		Map result = userService.get(id);
 		req.getSession().setAttribute("OnlineUser", result);
-		
+
 		return "redirect:/pages/welcome.jsp?save=success";
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest req) {
 		req.getSession().removeAttribute("OnlineUser");
 		req.getSession().removeAttribute("token");
 		return "redirect:/pages/index.jsp";
 	}
+
 	@RequestMapping("/register")
 	public String register(@RequestParam("username") String username,
-			@RequestParam("password") String password) {
+						   @RequestParam("password") String password) {
 		Map result = userService.getByUsername(username);
 		if (result != null) {
 			return "redirect:/pages/index.jsp?register=exists";
@@ -66,4 +72,30 @@ public class UserAction {
 		userService.register(username, password);
 		return "redirect:/pages/index.jsp?register=success";
 	}
+
+	@RequestMapping(value="/jsonfeed",method= RequestMethod.GET)
+	public String getJSON(Model model) {
+		List<String> list = new ArrayList<String>();
+		list.add("wang");
+		list.add("wang");
+		list.add("wang");
+		list.add("wang");
+		list.add("wang");
+		model.addAttribute("items", list);
+		model.addAttribute("status", 0);
+		return "jsonTemplate";
+	}
+    @RequestMapping(value="/add",method= RequestMethod.POST)
+	@ResponseBody
+    public Object addUser(@RequestBody Map<String, String> valueMap,
+                          BindingResult bindingResult) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (bindingResult.hasErrors()) {
+            map.put("errorCode", "40001");
+            map.put("errorMsg", bindingResult.getFieldError().getDefaultMessage());
+        }
+        map.put("success", "true");
+		return map;
+    }
 }

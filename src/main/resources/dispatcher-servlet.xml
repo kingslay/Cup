@@ -29,30 +29,8 @@
     <task:annotation-driven />
 
     <!-- 视图解析器和json解析器 -->
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="order" value="1" />
-        <!--<property name="mediaTypes">-->
-            <!--<map>-->
-                <!--<entry key="json" value="application/json" />-->
-                <!--<entry key="xml" value="application/xml" />-->
-                <!--<entry key="request" value="text/html" />-->
-            <!--</map>-->
-        <!--</property>-->
-        <property name="viewResolvers">
-            <list>
-                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
-                    <property name="prefix" value="/pages/" />
-                    <property name="suffix" value=".jsp"/>
-                </bean>
-            </list>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-            </list>
-        </property>
-    </bean>
+    <bean name="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+    <bean name="jsonTemplate" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 
     <!-- 文件上传解析器 -->
     <bean id="multipartResolver"
