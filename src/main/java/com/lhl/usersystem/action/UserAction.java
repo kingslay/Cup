@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
-import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lhl.usersystem.service.UserService;
@@ -115,4 +114,17 @@ public class UserAction {
         response.setStatus(400);
         return map;
     }
+
+	@RequestMapping(value = "/updateProfile.do")
+	@ResponseBody
+	public Object updateProfile(HttpServletRequest request) throws  IOException{
+		if(request instanceof MultipartHttpServletRequest)
+		{
+			MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest) request;
+			FileUtils.saveFile(request, multipartHttpServletRequest.getFile("file"));
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("url","");
+		return map;
+	}
 }
