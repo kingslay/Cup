@@ -124,7 +124,7 @@ public class UserAction {
 			FileUtils.saveFile(request, multipartHttpServletRequest.getFile("file"));
 		}
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("url","");
+		map.put("url",FileUtils.getFilePath());
 		return map;
 	}
 }

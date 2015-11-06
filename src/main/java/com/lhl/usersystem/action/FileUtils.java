@@ -11,13 +11,23 @@ public class FileUtils {
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
-                String localFilePath=null;filePath= "/uploads/"+UUID.randomUUID()+"_"+System.currentTimeMillis()+".png";
+                String localFilePath=null;
+                filePath= "/images/uploads/"+UUID.randomUUID()+"_"+System.currentTimeMillis()+".jpg";
                 // 文件保存路径
-                localFilePath =request.getSession().getServletContext().getRealPath("/")+filePath; System.out.println("filepath="+filePath);
+                localFilePath =request.getSession().getServletContext().getRealPath("/")+filePath;
+                System.out.println("filepath="+filePath);
+                File localFile = new File(localFilePath);
+                if (!localFile.exists())
+                {
+                    localFile.getParentFile().mkdirs();
+                    localFile.createNewFile();
+                }
                 // 转存文件
-                file.transferTo(new File(localFilePath));
+                file.transferTo(localFile);
                 setFilePath(filePath); return true;
-            } catch (Exception e) {  e.printStackTrace(); }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
