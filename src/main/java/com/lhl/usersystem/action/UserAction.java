@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lhl.usersystem.service.UserInfo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
@@ -23,34 +24,47 @@ public class UserAction {
 	@Resource
 	private UserService userService;
 
-	@RequestMapping("/login")
-	public ModelAndView login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest req) {
-		Map result = userService.checkLogin(username, password);
+	@RequestMapping(value="/regist",method= RequestMethod.PUT)
+	@ResponseBody
+	public Object register(@RequestParam("username") String username,
+						   @RequestParam("password") String password,HttpServletResponse response) {
+		Map result = userService.getByUsername(username);
 		if (result != null) {
-			String token = DigestUtils.md5DigestAsHex(req.getSession().getId().getBytes());
-			req.getSession().setAttribute("OnlineUser", result);
-			req.getSession().setAttribute("token", token);
-			return new ModelAndView("redirect:/pages/welcome.jsp");
+			response.setStatus(400);
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("message","用户名已存在");
+			return null;
 		}
-		return new ModelAndView("redirect:/pages/index.jsp?login=failed");
+		userService.register(username, password);
+		return userService.getByUsername(username);
 	}
 
-	@RequestMapping("/save")
-	public String save(@RequestParam("id") String id,
-					   @RequestParam("token") String token,
-					   @RequestParam("name") String name,
-					   @RequestParam("sex") String sex,
-					   @RequestParam("birthday") String birthday,
-					   HttpServletRequest req) {
-		String sesstoken = DigestUtils.md5DigestAsHex(req.getSession().getId().getBytes());
-		if (!StringUtils.equals(sesstoken, token)) {
-			return "redirect:/pages/welcome.jsp?save=invalidtoken";
-		}
-		userService.save(id, name, sex, birthday);
-		Map result = userService.get(id);
-		req.getSession().setAttribute("OnlineUser", result);
+	@RequestMapping(value="/login",method= RequestMethod.GET)
+	@ResponseBody
+	public Object login(@RequestParam("username") String username, @RequestParam("password") String password,HttpServletRequest request, HttpServletResponse response) {
+		Map result = userService.checkLogin(username, password);
+		if (result != null) {
+			String token = DigestUtils.md5DigestAsHex(request.getSession().getId().getBytes());
+			Map map = userService.getByUsername(username);
+			map.put("token",token);
+			return map;
 
-		return "redirect:/pages/welcome.jsp?save=success";
+		}else{
+			response.setStatus(400);
+			Map<String,String> map = new HashMap<String,String>();
+			if ( userService.getByUsername(username) == null) {
+				map.put("message","用户名不存在");
+			}else{
+				map.put("message", "密码错误");
+			}
+			return map;
+		}
+	}
+
+	@RequestMapping(value="/save",method= RequestMethod.PUT)
+	public Object save(@ModelAttribute UserInfo userInfo) {
+		userService.save(userInfo);
+        return null;
 	}
 
 	@RequestMapping("/logout")
@@ -60,71 +74,20 @@ public class UserAction {
 		return "redirect:/pages/index.jsp";
 	}
 
-	@RequestMapping("/register")
-	public String register(@RequestParam("username") String username,
-						   @RequestParam("password") String password) {
-		Map result = userService.getByUsername(username);
-		if (result != null) {
-			return "redirect:/pages/index.jsp?register=exists";
-		}
-		userService.register(username, password);
-		return "redirect:/pages/index.jsp?register=success";
-	}
-
-	@RequestMapping(value="/jsonfeed",method= RequestMethod.GET)
-    @ResponseBody
-	public Object getJSON(@RequestParam Map<String, String> valueMap) {
-		List<String> list = new ArrayList<String>();
-		list.add("wang");
-		list.add("wang");
-		list.add("wang");
-		list.add("wang");
-		list.add("wang");
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("items", list);
-		map.put("status", 1);
-        map.put("result",valueMap);
-        return map;
-	}
-    @RequestMapping(value="/add",method= RequestMethod.POST)
+	@RequestMapping(value = "/updateProfile.do",method= RequestMethod.POST)
 	@ResponseBody
-    public Object addUser(@RequestBody Map<String, String> valueMap,
-                          BindingResult bindingResult) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        if (bindingResult.hasErrors()) {
-            map.put("errorCode", "40001");
-            map.put("errorMsg", bindingResult.getFieldError().getDefaultMessage());
-        }
-        map.put("success", "true");
-		return map;
-    }
-    @RequestMapping("/testError")
-    @ResponseBody
-    public Object testEroor(@RequestParam Map<String, String> valueMap,HttpServletResponse response) throws IOException {
-        List<String> list = new ArrayList<String>();
-        list.add("wang");
-        list.add("wang");
-        list.add("wang");
-        list.add("wang");
-        list.add("wang");
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("items", list);
-        map.put("status", 1);
-        map.put("result",valueMap);
-        response.setStatus(400);
-        return map;
-    }
-
-	@RequestMapping(value = "/updateProfile.do")
-	@ResponseBody
-	public Object updateProfile(HttpServletRequest request) throws  IOException{
+	public Object updateProfile(@RequestHeader("accountid") String accountid,HttpServletRequest request) throws  IOException{
 		if(request instanceof MultipartHttpServletRequest)
 		{
 			MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest) request;
 			FileUtils.saveFile(request, multipartHttpServletRequest.getFile("file"));
+            String url = FileUtils.getFilePath();
+            userService.updateAvatar(accountid,url);
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("url",url);
+            return map;
 		}
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("url",FileUtils.getFilePath());
-		return map;
+        return null;
+
 	}
 }

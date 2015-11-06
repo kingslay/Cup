@@ -1,0 +1,14 @@
+CREATE TABLE user_info
+(
+    accountid INT PRIMARY KEY NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    birthday CHAR(14),
+    nickname VARCHAR(50),
+    avatar VARCHAR(100) NOT NULL,
+    height REAL NOT NULL,
+    city VARCHAR(20) NOT NULL
+);
+CREATE UNIQUE INDEX unique_id ON user_info (accountid);
+CREATE UNIQUE INDEX unique_username ON user_info (username);
+

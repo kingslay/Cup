@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.lhl.usersystem.service.UserInfo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	public Map get(String id) {
-		String sql ="select * from user_info where id =?";
+		String sql ="select * from user_info where accountid =?";
 		return this.getJdbcTemplate().queryForMap(sql, id);
 	}
 
@@ -42,12 +43,18 @@ public class UserServiceImpl implements UserService {
 		this.getJdbcTemplate().update(sql, username, password);
 	}
 	
-	public void save(String id, String name, String sex, String birthday) {
-		String sql = "update user_info set name=?,sex=?,birthday=? where id=?";
-		this.getJdbcTemplate().update(sql, name, sex, birthday, id);
+	public void save(UserInfo userInfo) {
+		String sql = "update user_info set nickname=?,avatar=?,birthday=?,city=?,height=? where accountid=?";
+		this.getJdbcTemplate().update(sql, userInfo.nickname, userInfo.avatar, userInfo.brithday,userInfo.city,userInfo.height, userInfo.accountid);
 	}
 
-	public JdbcTemplate getJdbcTemplate() {
+    @Override
+    public void updateAvatar(String accountid, String avatar) {
+        String sql = "update user_info set avatar=? where accountid=?";
+        this.getJdbcTemplate().update(sql, avatar,accountid);
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
 

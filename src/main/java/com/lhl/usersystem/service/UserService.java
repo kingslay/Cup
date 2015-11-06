@@ -8,5 +8,7 @@ public interface UserService {
 	public Map get(String id);
 	public void register(String username, String password);
 	public Map checkLogin(String username, String password);
-	public void save(String id, String name, String sex, String birthday);
+	public void save(UserInfo userInfo);
+    public void updateAvatar(String accountid, String avatar);
 }
+
