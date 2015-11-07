@@ -9,7 +9,7 @@ public class UserInfo {
     public Integer accountid;
     public String nickname;
     public String avatar;
-    public String brithday;
+    public String birthday;
     public float height;
     public String city;
 
