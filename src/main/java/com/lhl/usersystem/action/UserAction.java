@@ -26,17 +26,16 @@ public class UserAction {
 
 	@RequestMapping(value="/regist",method= RequestMethod.PUT)
 	@ResponseBody
-	public Object register(@RequestParam("username") String username,
-						   @RequestParam("password") String password,HttpServletResponse response) {
-		Map result = userService.getByUsername(username);
+	public Object register(@RequestBody UserInfo userInfo,HttpServletRequest request,HttpServletResponse response) {
+		Map result = userService.getByUsername(userInfo.username);
 		if (result != null) {
 			response.setStatus(400);
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("message","用户名已存在");
-			return null;
+			return map;
 		}
-		userService.register(username, password);
-		return userService.getByUsername(username);
+		userService.register(userInfo.username, userInfo.password);
+		return userService.getByUsername(userInfo.username);
 	}
 
 	@RequestMapping(value="/login",method= RequestMethod.GET)
@@ -61,8 +60,8 @@ public class UserAction {
 		}
 	}
 
-	@RequestMapping(value="/save",method= RequestMethod.PUT)
-	public Object save(@ModelAttribute UserInfo userInfo) {
+	@RequestMapping(value="/saveme",method= RequestMethod.PUT)
+	public Object save(@RequestBody UserInfo userInfo) {
 		userService.save(userInfo);
         return null;
 	}
@@ -81,7 +80,7 @@ public class UserAction {
 		{
 			MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest) request;
 			FileUtils.saveFile(request, multipartHttpServletRequest.getFile("file"));
-            String url = FileUtils.getFilePath();
+            String url = request.getScheme()+"://"+request.getServerName() +":"+request.getServerPort()+request.getContextPath()+"/" + FileUtils.getFilePath();
             userService.updateAvatar(accountid,url);
             Map<String,Object> map = new HashMap<String,Object>();
             map.put("url",url);
