@@ -66,9 +66,9 @@
         <attribute name="name" type="string">Default Jar</attribute>
     </object>
     <object type="LMREQUEST" id="z103">
-        <attribute name="body" type="string">[{"data":{"json":"{\\"username\\":\\"king\\",\\"accountid\\":\\"1\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"username\\":\\"king\\",\\"accountid\\":\\"1\\",\\"birthday\\":\\"2018年11月11日\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">E97C6513-D97E-4A3C-9027-1156990C200C</attribute>
-        <attribute name="url" type="string">http://localhost:8080/user/saveme</attribute>
+        <attribute name="url" type="string">http://121.199.75.79:8180/cup-0.1/user/saveme</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -93,7 +93,7 @@
     </object>
     <object type="LMREQUEST" id="z105">
         <attribute name="uuid" type="string">2F0EB515-70A3-446A-BB61-551B1D65DA75</attribute>
-        <attribute name="url" type="string">http://localhost:8080/user/regist</attribute>
+        <attribute name="url" type="string">http://121.199.75.79:8180/cup-0.1/user/regist</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -105,7 +105,7 @@
         <attribute name="name" type="string">My API (2)</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z111 z108"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z108 z111"></relationship>
     </object>
     <object type="LMENVIRONMENT" id="z106">
         <attribute name="uuid" type="string">7726A615-DCAD-4481-9B0F-E175B4967EDB</attribute>
@@ -143,7 +143,7 @@
     </object>
     <object type="LMREQUEST" id="z110">
         <attribute name="uuid" type="string">F7BFC972-8554-4830-9160-A9B258333EAA</attribute>
-        <attribute name="url" type="string">http://localhost:8080/user/login
+        <attribute name="url" type="string">http://121.199.75.79:8180/cup-0.1/user/login
 ?username=king\u2600password=1</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>

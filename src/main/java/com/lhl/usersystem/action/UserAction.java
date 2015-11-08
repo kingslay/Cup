@@ -61,8 +61,9 @@ public class UserAction {
 	}
 
 	@RequestMapping(value="/saveme",method= RequestMethod.PUT)
-	public Object save(@RequestBody UserInfo userInfo) {
-		userService.save(userInfo);
+    @ResponseBody
+    public Object save(@RequestBody UserInfo userInfo) {
+        userService.save(userInfo);
         return null;
 	}
 

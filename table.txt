@@ -1,11 +1,11 @@
 CREATE TABLE user_info
 (
-    accountid INT PRIMARY KEY NOT NULL,
+    accountid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     birthday CHAR(14),
     nickname VARCHAR(50),
-    avatar VARCHAR(100),
+    avatar VARCHAR(256),
     height DOUBLE,
     city VARCHAR(20)
 );
