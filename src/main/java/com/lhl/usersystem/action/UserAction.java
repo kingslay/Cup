@@ -26,7 +26,7 @@ public class UserAction {
 
 	@RequestMapping(value="/regist",method= RequestMethod.PUT)
 	@ResponseBody
-	public Object register(@RequestBody UserInfo userInfo,HttpServletRequest request,HttpServletResponse response) {
+	public Object register(@RequestBody UserInfo userInfo,HttpServletResponse response) {
 		Map result = userService.getByUsername(userInfo.username);
 		if (result != null) {
 			response.setStatus(400);
@@ -59,6 +59,16 @@ public class UserAction {
 			return map;
 		}
 	}
+    @RequestMapping(value="/phonelogin",method= RequestMethod.GET)
+    @ResponseBody
+    public Object phoneLogin(@RequestParam("phone") String phone,HttpServletRequest request,HttpServletResponse response) {
+        Map result = userService.getByPhone(phone);
+        if (result != null) {
+            return result;
+        }
+        userService.register(phone);
+        return userService.getByPhone(phone);
+    }
 
 	@RequestMapping(value="/saveme",method= RequestMethod.PUT)
     @ResponseBody

@@ -24,7 +24,18 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
-	public Map get(String id) {
+
+    @Override
+    public Map getByPhone(String phone) {
+        String sql ="select * from user_info where phone =?";
+        try {
+            return this.getJdbcTemplate().queryForMap(sql, phone);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Map get(String id) {
 		String sql ="select * from user_info where accountid =?";
 		return this.getJdbcTemplate().queryForMap(sql, id);
 	}
@@ -42,7 +53,13 @@ public class UserServiceImpl implements UserService {
 		String sql = "insert into user_info(username, password) values(?,?)";
 		this.getJdbcTemplate().update(sql, username, password);
 	}
-	
+
+    @Override
+    public void register(String phone) {
+        String sql = "insert into user_info(phone) values(?)";
+        this.getJdbcTemplate().update(sql, phone);
+    }
+
 	public void save(UserInfo userInfo) {
 		String sql = "update user_info set nickname=?,avatar=?,birthday=?,city=?,height=? where accountid=?";
 		this.getJdbcTemplate().update(sql, userInfo.nickname, userInfo.avatar, userInfo.birthday,userInfo.city,userInfo.height, userInfo.accountid);
