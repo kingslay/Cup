@@ -4,7 +4,7 @@ CREATE TABLE user_info
     password VARCHAR(50),
     birthday CHAR(14),
     nickname VARCHAR(50),
-    avatar VARCHAR(100),
+    avatar VARCHAR(200),
     height DOUBLE,
     city VARCHAR(20),
     accountid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
