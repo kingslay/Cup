@@ -1,5 +1,6 @@
 package com.lhl.usersystem.service.impl;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	public Map getByUsername(String username) {
 		String sql ="select * from user_info where username =?";
 		try {
-			return this.getJdbcTemplate().queryForMap(sql, username);
+			return filterNull(this.getJdbcTemplate().queryForMap(sql, username));
 		} catch (Exception e) {
 			return null;
 		}
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public Map getByPhone(String phone) {
         String sql ="select * from user_info where phone =?";
         try {
-            return this.getJdbcTemplate().queryForMap(sql, phone);
+            return filterNull(this.getJdbcTemplate().queryForMap(sql, phone));
         } catch (Exception e) {
             return null;
         }
@@ -37,13 +38,13 @@ public class UserServiceImpl implements UserService {
 
     public Map get(String id) {
 		String sql ="select * from user_info where accountid =?";
-		return this.getJdbcTemplate().queryForMap(sql, id);
+		return filterNull(this.getJdbcTemplate().queryForMap(sql, id));
 	}
 
 	public Map checkLogin(String username, String password) {
 		String sql = "select * from user_info where username=? and password=?";
 		try {
-			return this.getJdbcTemplate().queryForMap(sql, username, password);
+			return filterNull(this.getJdbcTemplate().queryForMap(sql, username, password));
 		} catch (Exception e) {
 			return null;
 		}
@@ -77,5 +78,16 @@ public class UserServiceImpl implements UserService {
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	private Map filterNull(Map<String,Object> map){
+		Iterator<Map.Entry<String, Object>> iterator=map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry<String, Object> entry= iterator.next();
+			if (entry.getValue() == null) {
+				iterator.remove();
+			}
+		}
+		return map;
 	}
 }

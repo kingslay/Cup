@@ -1,21 +1,18 @@
 package com.lhl.usersystem.action;
 
-import java.io.IOException;
-import java.util.*;
+import com.lhl.usersystem.service.UserInfo;
+import com.lhl.usersystem.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.lhl.usersystem.service.UserInfo;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.lhl.usersystem.service.UserService;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
