@@ -62,8 +62,9 @@ public class UserServiceImpl implements UserService {
     }
 
 	public void save(UserInfo userInfo) {
-		String sql = "update user_info set nickname=?,avatar=?,birthday=?,city=?,height=? where accountid=?";
-		this.getJdbcTemplate().update(sql, userInfo.nickname, userInfo.avatar, userInfo.birthday,userInfo.city,userInfo.height, userInfo.accountid);
+		String sql = "update user_info set avatar=?,birthday=?,city=?,constitution=?,height=?,nickname=?,phone=?,scene=?,sex=?,weight=? where accountid=?";
+		this.getJdbcTemplate().update(sql, userInfo.avatar, userInfo.birthday,userInfo.city,userInfo.constitution,
+                userInfo.height,userInfo.nickname,userInfo.phone,userInfo.scene,userInfo.sex,userInfo.weight, userInfo.accountid);
 	}
 
     @Override

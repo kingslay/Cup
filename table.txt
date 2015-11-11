@@ -8,7 +8,11 @@ CREATE TABLE user_info
     height DOUBLE,
     city VARCHAR(20),
     accountid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    phone CHAR(11)
+    phone CHAR(11),
+    sex CHAR(2),
+    scene VARCHAR(128),
+    constitution VARCHAR(128),
+    weight DOUBLE
 );
 CREATE UNIQUE INDEX unique_accountid ON user_info (accountid);
 CREATE UNIQUE INDEX unique_phone ON user_info (phone);
