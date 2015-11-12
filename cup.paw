@@ -193,7 +193,7 @@
     <object type="LMREQUEST" id="z114">
         <attribute name="body" type="string">[{"data":{"json":"{\\"accountid\\":\\"1\\",\\"clock\\":\\"12:3\\",\\"temperature\\":\\"90\\",\\"explanation\\":\\"\\\\u5976\\\\u7c89\\\\u6e29\\\\u5ea6\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">1346F8A1-5A8E-403A-9BFA-A0A9290526A6</attribute>
-        <attribute name="url" type="string">http://localhost:8080/behaviour/insert</attribute>
+        <attribute name="url" type="string">http://121.199.75.79:8180/cup-0.1/behaviour/insert</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
