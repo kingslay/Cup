@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>C65157E4-59FC-4B6E-BECC-6FC8EFA2FA62</UUID>
-        <nextObjectID>113</nextObjectID>
+        <nextObjectID>115</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -189,5 +189,29 @@
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z112"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z114">
+        <attribute name="body" type="string">[{"data":{"json":"{\\"accountid\\":\\"1\\",\\"clock\\":\\"12:3\\",\\"temperature\\":\\"90\\",\\"explanation\\":\\"\\\\u5976\\\\u7c89\\\\u6e29\\\\u5ea6\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="uuid" type="string">1346F8A1-5A8E-403A-9BFA-A0A9290526A6</attribute>
+        <attribute name="url" type="string">http://localhost:8080/behaviour/insert</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">4</attribute>
+        <attribute name="name" type="string">My API (3)</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z115"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z115">
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z114"></relationship>
     </object>
 </database>

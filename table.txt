@@ -17,3 +17,15 @@ CREATE TABLE user_info
 CREATE UNIQUE INDEX unique_accountid ON user_info (accountid);
 CREATE UNIQUE INDEX unique_phone ON user_info (phone);
 CREATE UNIQUE INDEX unique_username ON user_info (username);
+
+CREATE TABLE behaviour_info
+(
+    behaviourid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    accountid INT NOT NULL,
+    ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    clock CHAR(5),
+    temperature TINYINT,
+    explanation VARCHAR(128)
+);
+CREATE UNIQUE INDEX unique_behaviourid ON behaviour_info (behaviourid);
+
