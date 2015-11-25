@@ -1,0 +1,28 @@
+# Server settings (ServerProperties)
+server:
+  port: 8080
+  address: 127.0.0.1
+  sessionTimeout: 30
+  contextPath: /
+# Tomcat specifics
+tomcat:
+  accessLogEnabled: false
+  protocolHeader: x-forwarded-proto
+  remoteIpHeader: x-forwarded-for
+  basedir:
+  backgroundProcessorDelay: 30 # secs
+# File size limit
+multipart:
+  maxFileSize: 10Mb   
+  maxRequestSize: 20Mb
+# logging
+logging:
+  path: /log
+  level.org.springframework.web: DEBUG
+  level.org.hibernate: ERROR
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cup?characterEncoding=utf-8    
+    username: auth
+    password: auth
+    driver-class: com.mysql.jdbc.Driver
