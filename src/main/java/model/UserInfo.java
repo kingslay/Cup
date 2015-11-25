@@ -2,10 +2,12 @@ package model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.persistence.Entity;
+
 /**
  * Created by king on 15/11/6.
  */
-//@Entity
+@Entity
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class UserInfo {
 //    @Id
