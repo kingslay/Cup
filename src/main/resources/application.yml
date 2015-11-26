@@ -17,7 +17,7 @@ multipart:
   maxRequestSize: 20Mb
 # logging
 logging:
-  path: /log
+  path: ./log
   level.org.springframework.web: DEBUG
   level.org.hibernate: ERROR
 spring:
@@ -26,3 +26,8 @@ spring:
     username: auth
     password: auth
     driver-class: com.mysql.jdbc.Driver
+  jpa:
+    # Show or not log for each sql query
+    show-sql: true
+    # Hibernate ddl auto (create, create-drop, update)
+    hibernate.ddl-auto: update
