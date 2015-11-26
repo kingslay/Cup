@@ -269,7 +269,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"username\\":\\"kign1\\",\\"nickname\\":\\"aaaaa\\\\u4e2d\\\\u56fd\\\\u821e\\",\\"weight\\":\\"120\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"username\\":\\"king12\\",\\"weight\\":\\"130\\"\\/*,\\"height\\":\\"179\\"*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">7</attribute>
         <attribute name="name" type="string">user</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>

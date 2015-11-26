@@ -2,6 +2,7 @@ package com.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ public class BehaviourInfo {
     public Long accountid;
     public Timestamp ts;
     //闹钟格式是12:23
+    @Column(columnDefinition = "char",length=5)
     public String clock;
     //温度
     public Integer temperature;
