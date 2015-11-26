@@ -26,3 +26,8 @@ spring:
     username: auth
     password: auth
     driver-class: com.mysql.jdbc.Driver
+  jpa:
+    # Show or not log for each sql query
+    show-sql: true
+    # Hibernate ddl auto (create, create-drop, update)
+    hibernate.ddl-auto: update
