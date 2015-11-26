@@ -17,7 +17,7 @@ multipart:
   maxRequestSize: 20Mb
 # logging
 logging:
-  path: /log
+  path: ./log
   level.org.springframework.web: DEBUG
   level.org.hibernate: ERROR
 spring:
