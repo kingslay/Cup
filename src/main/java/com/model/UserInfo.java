@@ -1,17 +1,16 @@
 package com.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by king on 15/11/6.
  */
 @Entity
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_NULL)
+//@Table(name = "user_info")
 public class UserInfo {
     @Id
     @GeneratedValue
@@ -30,8 +29,8 @@ public class UserInfo {
     public String avatar;
     @Column(length=14)
     public String birthday;
-    public float height;
-    public float weight;
+    public Float height;
+    public Float weight;
     @Column(length=50)
     public String city;
 }

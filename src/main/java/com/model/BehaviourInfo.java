@@ -1,5 +1,6 @@
 package com.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
  * Created by king on 15/11/12.
  */
 @Entity
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_NULL)
 public class BehaviourInfo {
     @Id
     @GeneratedValue
