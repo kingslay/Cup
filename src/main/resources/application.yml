@@ -11,10 +11,6 @@ tomcat:
   remoteIpHeader: x-forwarded-for
   basedir:
   backgroundProcessorDelay: 30 # secs
-# File size limit
-multipart:
-  maxFileSize: 10Mb   
-  maxRequestSize: 20Mb
 # logging
 logging:
   path: ./log

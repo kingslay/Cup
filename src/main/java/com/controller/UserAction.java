@@ -6,6 +6,7 @@ import com.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
@@ -55,25 +56,24 @@ public class UserAction {
 			return map;
 		}
 	}
-    @RequestMapping(value="/phonelogin",method= RequestMethod.GET)
-    public Object phoneLogin(@RequestParam("phone") String phone,HttpServletRequest request,HttpServletResponse response) {
-        UserInfo result = userService.findByPhone(phone);
-        if (result != null) {
-            return result;
-        }
+	@RequestMapping(value="/phonelogin",method= RequestMethod.GET)
+	public Object phoneLogin(@RequestParam("phone") String phone,HttpServletRequest request,HttpServletResponse response) {
+		UserInfo result = userService.findByPhone(phone);
+		if (result != null) {
+			return result;
+		}
 		result = new UserInfo();
 		result.phone = phone;
-        userService.save(result);
-        return userService.findByPhone(phone);
-    }
+		userService.save(result);
+		return userService.findByPhone(phone);
+	}
 
 	@RequestMapping(value="/saveme",method= RequestMethod.PUT)
-    @ResponseBody
-    public Object save(@RequestBody UserInfo userInfo) {
-		UserInfo result = userService.findOne(userInfo.accountid);
-		userInfo.password = result.password;
-        userService.save(userInfo);
-        return null;
+	@ResponseBody
+	public Object save(@RequestBody UserInfo userInfo) {
+		userService.update(userInfo.avatar, userInfo.birthday,userInfo.city,userInfo.constitution,
+				userInfo.height,userInfo.nickname,userInfo.phone,userInfo.scene,userInfo.sex,userInfo.weight, userInfo.accountid);
+		return null;
 	}
 
 	@RequestMapping("/logout")
@@ -83,21 +83,16 @@ public class UserAction {
 		return "redirect:/pages/index.jsp";
 	}
 
-	@RequestMapping(value = "/updateProfile.do",method= RequestMethod.PUT)
+	@RequestMapping(value = "/updateProfile.do",method= RequestMethod.POST)
 	@ResponseBody
-	public Object updateProfile(@RequestHeader("accountid") String accountid,HttpServletRequest request) throws  IOException{
-		if(request instanceof MultipartHttpServletRequest)
-		{
-			MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest) request;
-			FileUtils.saveFile(request, multipartHttpServletRequest.getFile("file"));
-            String url = request.getScheme()+"://"+request.getServerName() +":"+request.getServerPort()+request.getContextPath()+"/" + FileUtils.getFilePath();
-            userService.updateAvatar(accountid,url);
-            Map<String,Object> map = new HashMap<String,Object>();
-            map.put("url",url);
-            return map;
-		}
-        return null;
-
+	public Object updateProfile(@RequestHeader("accountid") Long accountid,
+                                @RequestParam("file") MultipartFile file,HttpServletRequest request) throws  IOException{
+        FileUtils.saveFile(request,file);
+		String url = request.getScheme()+"://"+request.getServerName() +":"+request.getServerPort()+request.getContextPath()+"/" + FileUtils.getFilePath();
+		userService.updateAvatar(accountid,url);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("url",url);
+		return map;
 	}
 }
 
