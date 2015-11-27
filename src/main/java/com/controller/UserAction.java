@@ -21,6 +21,10 @@ public class UserAction {
     @Autowired
     private UserRepository userService;
 
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    public Object findAll() {
+      return userService.findAll();
+    }
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public Object register(@RequestBody UserInfo userInfo, HttpServletResponse response) {
         UserInfo result = userService.findByUsername(userInfo.username);
@@ -85,8 +89,8 @@ public class UserAction {
     @ResponseBody
     public Object updateProfile(@RequestHeader("accountid") Long accountid,
                                 @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
-        FileUtils.saveFile(request, file);
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/" + FileUtils.getFilePath();
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
+                request.getContextPath() + FileUtils.updateProfile(file, accountid +"_"+System.currentTimeMillis()+".jpg");
         userService.updateAvatar(accountid, url);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("url", url);

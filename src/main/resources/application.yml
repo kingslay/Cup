@@ -1,7 +1,7 @@
 # Server settings (ServerProperties)
 server:
-  port: 8080
-  address: 127.0.0.1
+  port: 8280
+  # address: localhost
   sessionTimeout: 30
   contextPath: /
 # Tomcat specifics
@@ -15,7 +15,7 @@ tomcat:
 logging:
   path: ./log
   level.org.springframework.web: DEBUG
-  level.org.hibernate: ERROR
+  level.org.hibernate: DEBUG
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/cup?characterEncoding=utf-8    
