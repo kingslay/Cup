@@ -1,7 +1,6 @@
 package com.service;
 
 import com.model.BehaviourInfo;
-import com.model.UserInfo;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
