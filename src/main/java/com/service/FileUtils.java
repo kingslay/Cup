@@ -1,64 +1,50 @@
 package com.service;
 
+import com.config.WebMvcConfig;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class FileUtils {
-    private static String filePath;
-    private static ArrayList<String> filePaths = new ArrayList<String>();
 
-    public static boolean saveFile(HttpServletRequest request, MultipartFile file) {
+    public static String saveFile(HttpServletRequest request, MultipartFile file) {
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
-                String localFilePath = null;
-                filePath = "/images/uploads/" + UUID.randomUUID() + "_" + System.currentTimeMillis() + ".jpg";
-                // 文件保存路径
-                localFilePath = request.getSession().getServletContext().getRealPath("/") + filePath;
-                System.out.println("filepath=" + filePath);
-                File localFile = new File(localFilePath);
+
+                String name = UUID.randomUUID() + "_" + System.currentTimeMillis() + ".jpg";
+                File localFile = new File(WebMvcConfig.getResourcePath()+"/image/uploads/"+name);
                 if (!localFile.exists()) {
                     localFile.getParentFile().mkdirs();
                     localFile.createNewFile();
                 }
                 // 转存文件
                 file.transferTo(localFile);
-                setFilePath(filePath);
-                return true;
+                return "image/uploads/"+name;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return false;
+        return null;
     }
 
-    public static boolean saveFiles(HttpServletRequest request, Map<String, MultipartFile> files) {
+    public static List<String> saveFiles(HttpServletRequest request, Map<String, MultipartFile> files) {
+        List<String> filePaths = new ArrayList<String>();
         for (int i = 0; i < files.size(); i++) {
             //有一张图片没上传成功，则return false
             MultipartFile multipartFile = files.get("file" + i);
-            if (saveFile(request, multipartFile)) {
-                filePaths.add(getFilePath());
+            String filePath = saveFile(request, multipartFile);
+            if (filePath != null) {
+                filePaths.add(filePath);
             } else {
-                return false;
+                return null;
             }
         }
-        return true;
-    }
-
-    public static String getFilePath() {
-        return filePath;
-    }
-
-    public static void setFilePath(String path) {
-        filePath = path;
-    }
-
-    public static ArrayList<String> getFilePaths() {
         return filePaths;
     }
 }

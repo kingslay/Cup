@@ -10,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,12 +88,17 @@ public class UserAction {
     @ResponseBody
     public Object updateProfile(@RequestHeader("accountid") Long accountid,
                                 @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
-        FileUtils.saveFile(request, file);
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/" + FileUtils.getFilePath();
-        userService.updateAvatar(accountid, url);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("url", url);
-        return map;
+        String filePath = FileUtils.saveFile(request,file);
+        if (filePath != null){
+            String url = request.getScheme() + "://" + request.getServerName() + ":" +
+                    request.getServerPort() + request.getContextPath() + "/" +filePath;
+            userService.updateAvatar(accountid, url);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("url", url);
+            return map;
+        }else{
+            return null;
+        }
     }
 }
 
