@@ -22,6 +22,8 @@ spring:
     username: auth
     password: auth
     driver-class: com.mysql.jdbc.Driver
+    testOnBorrow: true
+    validationQuery: SELECT 1
   jpa:
     # Show or not log for each sql query
     show-sql: true
