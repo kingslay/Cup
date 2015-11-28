@@ -25,7 +25,6 @@ var UserList = React.createClass({
                     <th>手机号码</th>
                     <th>性别</th>
                     <th>昵称</th>
-                    <th>昵称</th>
                     <th>水杯场景</th>
                     <th>体质</th>
                     <th>出生年月</th>
