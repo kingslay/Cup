@@ -10,12 +10,9 @@ buildscript {
 group 'com.king.cup'
 version '1.1'
 
-apply plugin: 'groovy'
 apply plugin: 'idea'
-apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'spring-boot'
-
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -34,3 +31,4 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     testCompile("junit:junit")
 }
+

@@ -4,12 +4,7 @@ import com.model.UserInfo;
 import com.service.FileUtils;
 import com.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +25,9 @@ public class UserAction {
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Object findAll() {
-      return userService.findAll();
+        return userService.findAll();
     }
+
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public Object register(@RequestBody UserInfo userInfo, HttpServletResponse response) {
         UserInfo result = userService.findByUsername(userInfo.username);
@@ -97,7 +93,7 @@ public class UserAction {
     public Object updateProfile(@RequestHeader("accountid") Long accountid,
                                 @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
-                request.getContextPath() + FileUtils.updateProfile(file, accountid +"_"+System.currentTimeMillis()+".jpg");
+                request.getContextPath() + FileUtils.updateProfile(file, accountid + "_" + System.currentTimeMillis() + ".jpg");
         userService.updateAvatar(accountid, url);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("url", url);
