@@ -4,15 +4,13 @@ import com.model.UserInfo;
 import com.service.FileUtils;
 import com.service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +21,12 @@ public class UserAction {
 
     @Autowired
     private UserRepository userService;
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Object findAll() {
+        return userService.findAll();
+    }
 
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public Object register(@RequestBody UserInfo userInfo, HttpServletResponse response) {
@@ -88,17 +92,12 @@ public class UserAction {
     @ResponseBody
     public Object updateProfile(@RequestHeader("accountid") Long accountid,
                                 @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
-        String filePath = FileUtils.saveFile(request,file);
-        if (filePath != null){
-            String url = request.getScheme() + "://" + request.getServerName() + ":" +
-                    request.getServerPort() + request.getContextPath() + "/" +filePath;
-            userService.updateAvatar(accountid, url);
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("url", url);
-            return map;
-        }else{
-            return null;
-        }
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() +
+                request.getContextPath() + FileUtils.updateProfile(file, accountid + "_" + System.currentTimeMillis() + ".jpg");
+        userService.updateAvatar(accountid, url);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("url", url);
+        return map;
     }
 }
 

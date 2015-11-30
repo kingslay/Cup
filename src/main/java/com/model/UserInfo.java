@@ -19,7 +19,7 @@ public class UserInfo {
     public long accountid;
     public String username;
     public String password;
-    @Column(unique = true, columnDefinition = "char", length = 11)
+    @Column(unique = true, columnDefinition = "char(11)")
     public String phone;
     @Column(length = 2)
     public String sex;

@@ -1,31 +1,25 @@
 package com.service;
 
-import com.config.WebMvcConfig;
+import com.config.WebConfig;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class FileUtils {
 
-    public static String saveFile(HttpServletRequest request, MultipartFile file) {
+    public static String saveFile(MultipartFile file, String filePath) {
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
-
-                String name = UUID.randomUUID() + "_" + System.currentTimeMillis() + ".jpg";
-                File localFile = new File(WebMvcConfig.getResourcePath()+"/image/uploads/"+name);
+                // 文件保存路径
+                File localFile = new File(WebConfig.Resource + filePath);
                 if (!localFile.exists()) {
                     localFile.getParentFile().mkdirs();
                     localFile.createNewFile();
                 }
                 // 转存文件
                 file.transferTo(localFile);
-                return "image/uploads/"+name;
+                return filePath;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -33,18 +27,7 @@ public class FileUtils {
         return null;
     }
 
-    public static List<String> saveFiles(HttpServletRequest request, Map<String, MultipartFile> files) {
-        List<String> filePaths = new ArrayList<String>();
-        for (int i = 0; i < files.size(); i++) {
-            //有一张图片没上传成功，则return false
-            MultipartFile multipartFile = files.get("file" + i);
-            String filePath = saveFile(request, multipartFile);
-            if (filePath != null) {
-                filePaths.add(filePath);
-            } else {
-                return null;
-            }
-        }
-        return filePaths;
+    public static String updateProfile(MultipartFile file, String name) {
+        return FileUtils.saveFile(file, "/images/uploads/" + name);
     }
 }

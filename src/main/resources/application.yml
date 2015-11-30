@@ -1,7 +1,7 @@
 # Server settings (ServerProperties)
 server:
-  port: 8080
-  address: 127.0.0.1
+  port: 8280
+  # address: localhost
   sessionTimeout: 30
   contextPath: /
 # Tomcat specifics
@@ -22,9 +22,10 @@ spring:
     username: auth
     password: auth
     driver-class: com.mysql.jdbc.Driver
+    testOnBorrow: true
+    validationQuery: SELECT 1
   jpa:
     # Show or not log for each sql query
     show-sql: true
     # Hibernate ddl auto (create, create-drop, update)
     hibernate.ddl-auto: update
-  resources.staticLocations:
