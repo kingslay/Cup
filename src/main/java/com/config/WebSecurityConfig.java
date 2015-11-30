@@ -18,31 +18,24 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/webjars/**","*/*.js","*/*.css","*/*.css.map","/user/login","/user/regist","/user/phonelogin");
-    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
         entryPoint.setRealmName("Spring Boot");
         http.exceptionHandling().authenticationEntryPoint(entryPoint);
-//        http
-//                .authorizeRequests()
-//                .anyRequest().authenticated()
-////                .antMatchers("*/*.js","*/*.css","*/*.css.map","/user/login","/user/regist","/user/phonelogin").permitAll()
-//                .and().csrf().disable()
-//                .formLogin()
-//                .defaultSuccessUrl("/", true)
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/");
-        http.requestMatchers().antMatchers("/**").anyRequest()
-                .and().httpBasic().and().anonymous().and().csrf().disable();
-//                .and().httpBasic().and().anonymous().disable().csrf().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/webjars/**","/**/*.css.map","/**/*.css","/**/*.js","/user/login","/user/regist","/user/phonelogin").permitAll()
+                .anyRequest().authenticated().and()
+                .httpBasic().and()
+                .csrf().disable()
+                .formLogin()
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/");
     }
 
     @Autowired
