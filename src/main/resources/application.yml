@@ -1,6 +1,10 @@
 # Server settings (ServerProperties)
 server:
-  port: 8280
+  port: 8282
+  ssl.key-store: server.jks
+  ssl.key-store-password: 123456
+  ssl.key-password: 1
+
   # address: localhost
   sessionTimeout: 30
   contextPath: /
