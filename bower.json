@@ -1,11 +1,9 @@
 {
   "name": "cup",
   "dependencies": {
-	 "react":"latest",
-	 "babel":"latest",
-   "jquery":"latest",
-    "angular": "latest",
-    "angular-resource": "latest",
+	"react":"latest",
+	"babel":"latest",
+   	"jquery":"latest",
     "bootstrap":"4.0"
   }
 }
