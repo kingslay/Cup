@@ -5,12 +5,12 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>C65157E4-59FC-4B6E-BECC-6FC8EFA2FA62</UUID>
-        <nextObjectID>151</nextObjectID>
+        <nextObjectID>153</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
                     <key>NSPersistenceFrameworkVersion</key>
-                    <integer>641</integer>
+                    <integer>640</integer>
                     <key>NSStoreModelVersionHashes</key>
                     <dict>
                         <key>LMCookieJar</key>
@@ -300,12 +300,12 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[[["file"],[{"data":{"bookmarkData":"Ym9va8wDAAAAAAQQMAAAAFL183WvZnpIUrhjzZuOYRK3rWQD8dEhc6F5eUHX71fcyAIAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAEAAAAAQEAAGtpbmcJAAAAAQEAAERvY3VtZW50cwAAAAQAAAABAQAAamF2YQMAAAABAQAAQ3VwAAUAAAABAQAAYnVpbGQAAAAEAAAAAQEAAGxpYnMIAAAAAQEAAHJlc291cmNlBgAAAAEBAABpbWFnZXMAAAcAAAABAQAAdXBsb2FkcwATAAAAAQEAADNfMTQ0ODYyNzg2MDA5NS5qcGcALAAAAAEGAAAQAAAAIAAAACwAAABAAAAATAAAAFgAAABoAAAAdAAAAIQAAACUAAAApAAAAAgAAAAEAwAAKcAAAAAAAAAIAAAABAMAAPA+0AcAAAAACAAAAAQDAAAkwdAHAAAAAAgAAAAEAwAARQA1GAAAAAAIAAAABAMAANlbNRgAAAAACAAAAAQDAACkLWQYAAAAAAgAAAAEAwAAZMtkGAAAAAAIAAAABAMAAMjNZBgAAAAACAAAAAQDAADJzWQYAAAAAAgAAAAEAwAAys1kGAAAAAAIAAAABAMAAP3QZBgAAAAALAAAAAEGAAD0AAAABAEAABQBAAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAACEAQAAlAEAAAgAAAAABAAAQbwIhhQAAAAYAAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgAAAAEAwAACQAAAAAAAAAEAAAAAwMAAPUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEBAABNYWNpbnRvc2ggSEQIAAAABAMAAAAAgjF0AAAACAAAAAAEAABBtWww4AAAACQAAAABAQAANTdGMUVFQTAtRjhENi0zNjMzLUE2MUYtRDE4NjI2MDBCNTE2GAAAAAECAACBAAAAAQAAAO8TAAABAAAAAAAAAAAAAAABAAAAAQEAAC8AAAAAAAAAAQUAAMwAAAD+\\/\\/\\/\\/AQAAAAAAAAAQAAAABBAAAMAAAAAAAAAABRAAAKQBAAAAAAAAEBAAAOgBAAAAAAAAQBAAANgBAAAAAAAAAiAAALQCAAAAAAAABSAAACQCAAAAAAAAECAAADQCAAAAAAAAESAAAGgCAAAAAAAAEiAAAEgCAAAAAAAAEyAAAFgCAAAAAAAAICAAAJQCAAAAAAAAMCAAAMACAAAAAAAAAcAAAAgCAAAAAAAAEcAAACAAAAAAAAAAEsAAABgCAAAAAAAAENAAAAQAAAAAAAAA"},"identifier":"com.luckymarmot.FileContentDynamicValue"}],true]]},"identifier":"com.luckymarmot.BodyMultipartFormDataDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[[["file"],[{"data":{"bookmarkData":"Ym9va7QCAAAAAAQQMAAAAA\\/32fuBEf81lvZYwRWYmUlm3Lvro8qtprUg9GoBdwQgsAEAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAIAAAAAQEAAGtpbmdzbGF5BwAAAAEBAABEZXNrdG9wAAUAAAABAQAAMy5qcGcAAAAQAAAAAQYAABAAAAAgAAAAMAAAAEAAAAAIAAAABAMAADmYAgAAAAAACAAAAAQDAAC2nAkAAAAAAAgAAAAEAwAAx5wJAAAAAAAIAAAABAMAALtOHgEAAAAAEAAAAAEGAABoAAAAeAAAAIgAAACYAAAACAAAAAAEAABBvAvRqwAAABgAAAABAgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAACAAAAAQDAAACAAAAAAAAAAQAAAADAwAA9QEAAAgAAAABCQAAZmlsZTovLy8MAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAEAwAAAAAAKDoAAAAIAAAAAAQAAEG7PKHJAAAAJAAAAAEBAABEOENBMDg0Mi04MjVCLTNFQzUtQUQyNy01OTFENjlBQzI4NDEYAAAAAQIAAIEAAAABAAAA7xMAAAEAAAAAAAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAAzAAAAP7\\/\\/\\/8BAAAAAAAAABAAAAAEEAAAUAAAAAAAAAAFEAAAqAAAAAAAAAAQEAAA0AAAAAAAAABAEAAAwAAAAAAAAAACIAAAnAEAAAAAAAAFIAAADAEAAAAAAAAQIAAAHAEAAAAAAAARIAAAUAEAAAAAAAASIAAAMAEAAAAAAAATIAAAQAEAAAAAAAAgIAAAfAEAAAAAAAAwIAAAqAEAAAAAAAABwAAA8AAAAAAAAAARwAAAIAAAAAAAAAASwAAAAAEAAAAAAAAQ0AAABAAAAAAAAAA="},"identifier":"com.luckymarmot.FileContentDynamicValue"}],true]]},"identifier":"com.luckymarmot.BodyMultipartFormDataDynamicValue"}]</attribute>
         <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">user</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z130 z127"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z130 z127 z153"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z127">
         <attribute name="value" type="string">1</attribute>
@@ -331,7 +331,7 @@
     </object>
     <object type="LMKEYVALUE" id="z130">
         <attribute name="value" type="string"></attribute>
-        <attribute name="order" type="int64">3</attribute>
+        <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string"></attribute>
         <attribute name="enabled" type="bool">1</attribute>
         <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
@@ -429,7 +429,7 @@
         <attribute name="name" type="string">user</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z150"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z152 z150"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z150">
         <attribute name="order" type="int64">17</attribute>
@@ -438,5 +438,25 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z149"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z152">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">18</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z149"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z153">
+        <attribute name="value" type="string">[{"data":{"charset":"us-ascii","username":["admin"],"password":["admin"]},"identifier":"com.luckymarmot.BasicAuthDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">3</attribute>
+        <attribute name="name" type="string">Authorization</attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z126"></relationship>
     </object>
 </database>
