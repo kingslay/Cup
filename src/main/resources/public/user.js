@@ -59,8 +59,4 @@ var User = React.createClass({
         )
     }
 })
-
-ReactDOM.render(
-    <App />,
-    document.getElementById('react')
-)
+React.render(<App />, document.getElementById('react'))
