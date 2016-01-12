@@ -1,9 +1,0 @@
-{
-  "name": "cup",
-  "dependencies": {
-	"react":"latest",
-	"babel":"latest",
-   	"jquery":"latest",
-    "bootstrap":"4.0"
-  }
-}
