@@ -21,7 +21,7 @@ task bundle(type: NpmTask) {
 }
 
 task test(type: NpmTask) {
-    args = ['test']
+    args = ['run','test']
 }
 
 check.dependsOn(test)
