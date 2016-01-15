@@ -6,10 +6,10 @@ module.exports = {
     entry:{
         main: './main.js',
         bootstrap: 'bootstrap/dist/css/bootstrap.css',
-        user: './src/component/user.jsx'
+        user: './src/main/component/user.jsx'
     },
     output: {
-        path: path.join(__dirname, '../src/main/resources/static'),
+        path: path.join(__dirname, './src/main/resources/static'),
         filename: '[name].js'
     },
     module: {
@@ -32,6 +32,6 @@ module.exports = {
     },
     plugins: [
         commonsPlugin,
-        new ExtractTextPlugin("css/[name].css")
+        new ExtractTextPlugin("/css/[name].css")
     ]
 };

@@ -2,10 +2,8 @@ plugins {
     id "com.moowork.node" version "0.11"
 }
 
-apply plugin: 'base'
+apply plugin: 'java'
 version '0.0.9'
-
-buildDir = 'dist'
 
 node {
     version = '5.2.0'
@@ -19,11 +17,7 @@ task bundle(type: NpmTask) {
     outputs.dir(new File('dist'))
     args = ['run', 'bundle']
 }
-
-task test(type: NpmTask) {
-    args = ['run','test']
-}
-
 check.dependsOn(test)
 bundle.dependsOn(npm_install)
-assemble.dependsOn(bundle)
+jar.dependsOn bundle
+
