@@ -35,9 +35,10 @@ class User extends React.Component {
         super(props);
         this.state = {users: [], pagination: {}, loading: false,};
     }
-    fetch(params = {}) {
+
+    fetch (params = {}) {
         this.setState({loading: true});
-        $.get("/userInfoes",params)
+        $.get("/userInfoes", params)
             .then((response) => {
                     const pagination = this.state.pagination;
                     pagination.total = response.page.totalPages;
@@ -45,7 +46,6 @@ class User extends React.Component {
                 }
             )
     }
-
 
     handleTableChange(pagination, filters, sorter) {
         const pager = this.state.pagination;
@@ -57,7 +57,7 @@ class User extends React.Component {
         const params = {
             size: pagination.pageSize,
             page: pagination.current,
-            sort: sorter.order == "ascend" ? sorter.field: sorter.field+",desc"
+            sort: sorter.order == "ascend" ? sorter.field : sorter.field + ",desc"
         };
         for (let key in filters) {
             params[key] = filters[key];
@@ -75,7 +75,7 @@ class User extends React.Component {
                    dataSource={this.state.users}
                    pagination={this.state.pagination}
                    loading={this.state.loading}
-                   onChange={this.handleTableChange} rowKey={(r)=>r._links.self.href}/>
+                   onChange={::this.handleTableChange} rowKey={(r)=>r._links.self.href}/>
         )
     }
 }
