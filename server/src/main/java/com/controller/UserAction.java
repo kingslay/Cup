@@ -22,12 +22,6 @@ public class UserAction {
     @Autowired
     private UserRepository userService;
 
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Object findAll() {
-        return userService.findAll();
-    }
-
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public Object register(@RequestBody UserInfo userInfo, HttpServletResponse response) {
         UserInfo result = userService.findByUsername(userInfo.username);

@@ -6,6 +6,7 @@ module.exports = {
     entry:{
         main: './main.js',
         bootstrap: 'bootstrap/dist/css/bootstrap.css',
+        antd:'antd/lib/index.css',
         user: './src/main/component/user.jsx'
     },
     output: {

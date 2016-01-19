@@ -1,68 +1,82 @@
-//import 'bootstrap/dist/css/bootstrap.css';
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Table = require('antd').Table;
 var $ = require('jquery');
-class App extends React.Component {
+const columns = [{
+    title: '手机号码',
+    dataIndex: 'phone'
+}, {
+    title: '性别',
+    dataIndex: 'sex',
+    sorter: true
+}, {
+    title: '昵称',
+    dataIndex: 'nickname'
+}, {
+    title: '水杯场景',
+    dataIndex: 'scene'
+}, {
+    title: '体质',
+    dataIndex: 'constitution'
+}, {
+    title: '出生年月',
+    dataIndex: 'birthday'
+}, {
+    title: '身高(cm)',
+    dataIndex: 'height'
+}, {
+    title: '体重(kg)',
+    dataIndex: 'weight'
+}];
+
+class User extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {users: []};
+        this.state = {users: [], pagination: {}, loading: false,};
     }
-
-    componentDidMount() {
-        $.get("/user/findAll")
-            .then((response) =>
-                this.setState({users: response})
+    fetch(params = {}) {
+        this.setState({loading: true});
+        $.get("/userInfoes",params)
+            .then((response) => {
+                    const pagination = this.state.pagination;
+                    pagination.total = response.page.totalPages;
+                    this.setState({users: response._embedded.userInfoes, loading: false, pagination,})
+                }
             )
     }
 
-    render() {
-        return (
-            <UserList users={this.state.users}/>
-        )
-    }
-}
 
-class UserList extends React.Component {
-    render() {
-        return (
-            <table className="table table-condensed">
-                <thead>
-                <tr>
-                    <th>手机号码</th>
-                    <th>性别</th>
-                    <th>昵称</th>
-                    <th>水杯场景</th>
-                    <th>体质</th>
-                    <th>出生年月</th>
-                    <th>身高(cm)</th>
-                    <th>体重(kg)</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    this.props.users.map((user) =>
-                        <User key={user.accountid} user={user}/>
-                    )}
-                </tbody>
-            </table>
-        )
-    }
-}
+    handleTableChange(pagination, filters, sorter) {
+        const pager = this.state.pagination;
+        pager.current = pagination.current;
+        this.setState({
+            pagination: pager
+        });
 
-class User extends React.Component {
+        const params = {
+            size: pagination.pageSize,
+            page: pagination.current,
+            sort: sorter.order == "ascend" ? sorter.field: sorter.field+",desc"
+        };
+        for (let key in filters) {
+            params[key] = filters[key];
+        }
+        this.fetch(params);
+    }
+
+    componentDidMount() {
+        this.fetch()
+    }
+
     render() {
         return (
-            <tr>
-                <td>{this.props.user.phone}</td>
-                <td>{this.props.user.sex}</td>
-                <td>{this.props.user.nickname}</td>
-                <td>{this.props.user.scene}</td>
-                <td>{this.props.user.constitution}</td>
-                <td>{this.props.user.birthday}</td>
-                <td>{this.props.user.height}</td>
-                <td>{this.props.user.weight}</td>
-            </tr>
+            <Table columns={columns}
+                   dataSource={this.state.users}
+                   pagination={this.state.pagination}
+                   loading={this.state.loading}
+                   onChange={this.handleTableChange} rowKey={(r)=>r._links.self.href}/>
         )
     }
 }
-ReactDOM.render(<App />, document.getElementById('user'))
+ReactDOM.render(<User />, document.getElementById('user'))
