@@ -14,19 +14,18 @@ buildscript {
         classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
-apply plugin: 'java'
+apply plugin: 'war'
 apply plugin: 'docker'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 group = 'king'
 jar {
     baseName = 'spring-boot-cup'
     version =  '1.1.2'
 }
-
 //sourceSets {
 //    main {
 //        resources {
