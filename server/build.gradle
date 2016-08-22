@@ -22,9 +22,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group = 'king'
+version =  '1.1.2'
 jar {
     baseName = 'spring-boot-cup'
-    version =  '1.1.2'
 }
 //sourceSets {
 //    main {

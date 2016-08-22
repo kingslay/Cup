@@ -341,7 +341,7 @@
     </object>
     <object type="LMREQUEST" id="z131">
         <attribute name="uuid" type="string">FB301C2F-9B4C-41C0-8F12-D5CE04F50AC3</attribute>
-        <attribute name="url" type="string">[{"data":{"environmentVariable":"7CAACB91-DAEE-47A1-AE5A-9A063C759698"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/user\\/findAll"]</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"7CAACB91-DAEE-47A1-AE5A-9A063C759698"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/userInfoes"]</attribute>
         <attribute name="storecookies" type="bool">0</attribute>
         <attribute name="sendcookies" type="bool">0</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
