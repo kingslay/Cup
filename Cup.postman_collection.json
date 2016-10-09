@@ -1,0 +1,322 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cup",
+		"_postman_id": "9cb19a15-97ae-f281-f3f1-e68d01433948",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{host}}/user/phonelogin?phone=13395990807",
+			"request": {
+				"url": "{{host}}/user/phonelogin?phone=13395990807",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"enabled": true,
+							"key": "code",
+							"type": "text",
+							"value": "xWnkliVQJURqB2x1"
+						},
+						{
+							"enabled": true,
+							"key": "grant_type",
+							"type": "text",
+							"value": "authorization_code"
+						},
+						{
+							"enabled": true,
+							"key": "redirect_uri",
+							"type": "text",
+							"value": "https://www.getpostman.com/oauth2/callback"
+						},
+						{
+							"enabled": true,
+							"key": "client_id",
+							"type": "text",
+							"value": "abc123"
+						},
+						{
+							"enabled": true,
+							"key": "client_secret",
+							"type": "text",
+							"value": "ssh-secret"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/user/login ?username=king&password=1",
+			"request": {
+				"url": "{{host}}/user/login?username=king&password=1",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/userInfoes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "admin",
+						"password": "admin",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "{{host}}/userInfoes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/index.html",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "admin",
+						"password": "admin",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "{{host}}/index.html",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/user/regist",
+			"request": {
+				"url": "{{host}}/user/regist",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"king\",\"password\":\"1\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/user/updateProfile.do",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "admin",
+						"password": "admin",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "{{host}}/user/updateProfile.do",
+				"method": "POST",
+				"header": [
+					{
+						"key": "accountid",
+						"value": "1",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Simulator Screen Shot 2016年10月9日 16.11.07.png"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/user/saveme",
+			"request": {
+				"url": "{{host}}/user/saveme",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nickname\":\"aaaa\",\"accountid\":\"1\",\"birthday\":\"2013\\u5e7407\\u670822\\u65e5\",\"phone\":\"13395990807\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/behaviour?size=2&page=0&sort=ts%2Cdesc",
+			"request": {
+				"url": "{{host}}/behaviour?size=2&page=0&sort=ts%2Cdesc",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/behaviour",
+			"request": {
+				"url": "{{host}}/behaviour",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/behaviour/",
+			"request": {
+				"url": "{{host}}/behaviour/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"accountid\":\"1\",\"clock\":\"12:30\",\"temperature\":\"90\",\"explanation\":\"\\u5976\\u7c89\\u6e29\\u5ea6\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/behaviour/1",
+			"request": {
+				"url": "{{host}}/behaviour/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"accountid\":\"1\",\"clock\":\"12:30\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://114.55.91.36:8282/behaviour/2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "admin",
+						"password": "admin",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://114.55.91.36:8282/behaviour/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"kign1\",\"nickname\":\"aaaaa\\u4e2d\\u56fd\\u821e\",\"weight\":\"120\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
